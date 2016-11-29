@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.m1c.yhy.person.dao.CarInfoDao" >
+    <resultMap id="BaseResultMap" type="cn.m1c.yhy.person.model.CarInfo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="created" property="created" jdbcType="TIMESTAMP" />
+        <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+        <result column="user_id" property="userId" jdbcType="VARCHAR" />
+        <result column="owner" property="owner" jdbcType="VARCHAR" />
+        <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+        <result column="brand" property="brand" jdbcType="VARCHAR" />
+        <result column="output" property="output" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, created, updated, deleted, user_id, owner, car_no, brand, output
+    </sql>
+    <sql id="Find_Where" >
+        <where >
+            <if test="created != null and created !='' " >
+                 AND created = #{created,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updated != null and updated !='' " >
+                 AND updated = #{updated,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deleted != null and deleted !='' " >
+                 AND deleted = #{deleted,jdbcType=BIT}
+            </if>
+            <if test="userId != null and userId !='' " >
+                 AND user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="owner != null and owner !='' " >
+                 AND owner = #{owner,jdbcType=VARCHAR}
+            </if>
+            <if test="carNo != null and carNo !='' " >
+                 AND car_no = #{carNo,jdbcType=VARCHAR}
+            </if>
+            <if test="brand != null and brand !='' " >
+                 AND brand = #{brand,jdbcType=VARCHAR}
+            </if>
+            <if test="output != null and output !='' " >
+                 AND output = #{output,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from person_car_info
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from person_car_info
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.m1c.yhy.person.model.CarInfo" >
+        insert into person_car_info (id, created, updated, 
+            deleted, user_id, owner, 
+            car_no, brand, output)
+        values (#{id,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+            #{deleted,jdbcType=BIT}, #{userId,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, 
+            #{carNo,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{output,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.m1c.yhy.person.model.CarInfo" >
+        insert into person_car_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="created != null" >
+                created,
+            </if>
+            <if test="updated != null" >
+                updated,
+            </if>
+            <if test="deleted != null" >
+                deleted,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="owner != null" >
+                owner,
+            </if>
+            <if test="carNo != null" >
+                car_no,
+            </if>
+            <if test="brand != null" >
+                brand,
+            </if>
+            <if test="output != null" >
+                output,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null" >
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="owner != null" >
+                #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="carNo != null" >
+                #{carNo,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null" >
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="output != null" >
+                #{output,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.m1c.yhy.person.model.CarInfo" >
+        update person_car_info
+        <set >
+            <if test="created != null" >
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                updated = #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="userId != null" >
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="owner != null" >
+                owner = #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="carNo != null" >
+                car_no = #{carNo,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null" >
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="output != null" >
+                output = #{output,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.m1c.yhy.person.model.CarInfo" >
+        update person_car_info
+        set created = #{created,jdbcType=TIMESTAMP},
+            updated = #{updated,jdbcType=TIMESTAMP},
+            deleted = #{deleted,jdbcType=BIT},
+            user_id = #{userId,jdbcType=VARCHAR},
+            owner = #{owner,jdbcType=VARCHAR},
+            car_no = #{carNo,jdbcType=VARCHAR},
+            brand = #{brand,jdbcType=VARCHAR},
+            output = #{output,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="queryByModel" resultMap="BaseResultMap" parameterType="cn.m1c.yhy.person.model.CarInfo" >
+        select 
+        <include refid="Base_Column_List" />
+        from person_car_info
+        <include refid="Find_Where" />
+    </select>
+</mapper>

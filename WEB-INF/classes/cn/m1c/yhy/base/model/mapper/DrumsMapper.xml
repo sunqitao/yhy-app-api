@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.m1c.yhy.base.dao.DrumsDao" >
+    <resultMap id="BaseResultMap" type="cn.m1c.yhy.base.model.Drums" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="created" property="created" jdbcType="TIMESTAMP" />
+        <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+        <result column="prod_date" property="prodDate" jdbcType="VARCHAR" />
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, created, updated, deleted, name, id_no, prod_date, avatar
+    </sql>
+    <sql id="Find_Where" >
+        <where >
+            <if test="created != null and created !='' " >
+                 AND created = #{created,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updated != null and updated !='' " >
+                 AND updated = #{updated,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deleted != null and deleted !='' " >
+                 AND deleted = #{deleted,jdbcType=BIT}
+            </if>
+            <if test="name != null and name !='' " >
+                 AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="idNo != null and idNo !='' " >
+                 AND id_no = #{idNo,jdbcType=VARCHAR}
+            </if>
+            <if test="prodDate != null and prodDate !='' " >
+                 AND prod_date = #{prodDate,jdbcType=VARCHAR}
+            </if>
+            <if test="avatar != null and avatar !='' " >
+                 AND avatar = #{avatar,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from base_drums
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from base_drums
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.m1c.yhy.base.model.Drums" >
+        insert into base_drums (id, created, updated, 
+            deleted, name, id_no, 
+            prod_date, avatar)
+        values (#{id,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+            #{deleted,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, 
+            #{prodDate,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.m1c.yhy.base.model.Drums" >
+        insert into base_drums
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="created != null" >
+                created,
+            </if>
+            <if test="updated != null" >
+                updated,
+            </if>
+            <if test="deleted != null" >
+                deleted,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="idNo != null" >
+                id_no,
+            </if>
+            <if test="prodDate != null" >
+                prod_date,
+            </if>
+            <if test="avatar != null" >
+                avatar,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null" >
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="idNo != null" >
+                #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="prodDate != null" >
+                #{prodDate,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null" >
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.m1c.yhy.base.model.Drums" >
+        update base_drums
+        <set >
+            <if test="created != null" >
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                updated = #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="idNo != null" >
+                id_no = #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="prodDate != null" >
+                prod_date = #{prodDate,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null" >
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.m1c.yhy.base.model.Drums" >
+        update base_drums
+        set created = #{created,jdbcType=TIMESTAMP},
+            updated = #{updated,jdbcType=TIMESTAMP},
+            deleted = #{deleted,jdbcType=BIT},
+            name = #{name,jdbcType=VARCHAR},
+            id_no = #{idNo,jdbcType=VARCHAR},
+            prod_date = #{prodDate,jdbcType=VARCHAR},
+            avatar = #{avatar,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="queryByModel" resultMap="BaseResultMap" parameterType="cn.m1c.yhy.base.model.Drums" >
+        select 
+        <include refid="Base_Column_List" />
+        from base_drums
+        <include refid="Find_Where" />
+    </select>
+</mapper>

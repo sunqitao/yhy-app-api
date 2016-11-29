@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.m1c.yhy.base.dao.StoreDao" >
+    <resultMap id="BaseResultMap" type="cn.m1c.yhy.base.model.Store" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="created" property="created" jdbcType="TIMESTAMP" />
+        <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="tel" property="tel" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="qq" property="qq" jdbcType="VARCHAR" />
+        <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+        <result column="lat" property="lat" jdbcType="DECIMAL" />
+        <result column="lng" property="lng" jdbcType="DECIMAL" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, created, updated, deleted, name, linkman, address, phone, tel, email, qq, wechat, 
+        avatar, lat, lng
+    </sql>
+    <sql id="Find_Where" >
+        <where >
+            <if test="created != null and created !='' " >
+                 AND created = #{created,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updated != null and updated !='' " >
+                 AND updated = #{updated,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deleted != null and deleted !='' " >
+                 AND deleted = #{deleted,jdbcType=BIT}
+            </if>
+            <if test="name != null and name !='' " >
+                 AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="linkman != null and linkman !='' " >
+                 AND linkman = #{linkman,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null and address !='' " >
+                 AND address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null and phone !='' " >
+                 AND phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="tel != null and tel !='' " >
+                 AND tel = #{tel,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null and email !='' " >
+                 AND email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="qq != null and qq !='' " >
+                 AND qq = #{qq,jdbcType=VARCHAR}
+            </if>
+            <if test="wechat != null and wechat !='' " >
+                 AND wechat = #{wechat,jdbcType=VARCHAR}
+            </if>
+            <if test="avatar != null and avatar !='' " >
+                 AND avatar = #{avatar,jdbcType=VARCHAR}
+            </if>
+            <if test="lat != null and lat !='' " >
+                 AND lat = #{lat,jdbcType=DECIMAL}
+            </if>
+            <if test="lng != null and lng !='' " >
+                 AND lng = #{lng,jdbcType=DECIMAL}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from base_store
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from base_store
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.m1c.yhy.base.model.Store" >
+        insert into base_store (id, created, updated, 
+            deleted, name, linkman, 
+            address, phone, tel, 
+            email, qq, wechat, 
+            avatar, lat, lng)
+        values (#{id,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+            #{deleted,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
+            #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+            #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+            #{avatar,jdbcType=VARCHAR}, #{lat,jdbcType=DECIMAL}, #{lng,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.m1c.yhy.base.model.Store" >
+        insert into base_store
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="created != null" >
+                created,
+            </if>
+            <if test="updated != null" >
+                updated,
+            </if>
+            <if test="deleted != null" >
+                deleted,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="linkman != null" >
+                linkman,
+            </if>
+            <if test="address != null" >
+                address,
+            </if>
+            <if test="phone != null" >
+                phone,
+            </if>
+            <if test="tel != null" >
+                tel,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="qq != null" >
+                qq,
+            </if>
+            <if test="wechat != null" >
+                wechat,
+            </if>
+            <if test="avatar != null" >
+                avatar,
+            </if>
+            <if test="lat != null" >
+                lat,
+            </if>
+            <if test="lng != null" >
+                lng,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null" >
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null" >
+                #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null" >
+                #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null" >
+                #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null" >
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                #{lat,jdbcType=DECIMAL},
+            </if>
+            <if test="lng != null" >
+                #{lng,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.m1c.yhy.base.model.Store" >
+        update base_store
+        <set >
+            <if test="created != null" >
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                updated = #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null" >
+                linkman = #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null" >
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null" >
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null" >
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                lat = #{lat,jdbcType=DECIMAL},
+            </if>
+            <if test="lng != null" >
+                lng = #{lng,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.m1c.yhy.base.model.Store" >
+        update base_store
+        set created = #{created,jdbcType=TIMESTAMP},
+            updated = #{updated,jdbcType=TIMESTAMP},
+            deleted = #{deleted,jdbcType=BIT},
+            name = #{name,jdbcType=VARCHAR},
+            linkman = #{linkman,jdbcType=VARCHAR},
+            address = #{address,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            tel = #{tel,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            qq = #{qq,jdbcType=VARCHAR},
+            wechat = #{wechat,jdbcType=VARCHAR},
+            avatar = #{avatar,jdbcType=VARCHAR},
+            lat = #{lat,jdbcType=DECIMAL},
+            lng = #{lng,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="queryByModel" resultMap="BaseResultMap" parameterType="cn.m1c.yhy.base.model.Store" >
+        select 
+        <include refid="Base_Column_List" />
+        from base_store
+        <include refid="Find_Where" />
+    </select>
+</mapper>

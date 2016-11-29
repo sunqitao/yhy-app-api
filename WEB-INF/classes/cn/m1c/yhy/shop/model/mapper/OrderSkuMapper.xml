@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.m1c.yhy.shop.dao.OrderSkuDao" >
+    <resultMap id="BaseResultMap" type="cn.m1c.yhy.shop.model.OrderSku" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="created" property="created" jdbcType="TIMESTAMP" />
+        <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+        <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="sku_no" property="skuNo" jdbcType="VARCHAR" />
+        <result column="prod_date" property="prodDate" jdbcType="VARCHAR" />
+        <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+        <result column="deal_price" property="dealPrice" jdbcType="DECIMAL" />
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+        <result column="count" property="count" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="action_name" property="actionName" jdbcType="VARCHAR" />
+        <result column="brand" property="brand" jdbcType="VARCHAR" />
+        <result column="sku_id" property="skuId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, created, updated, deleted, order_id, name, sku_no, prod_date, original_price, 
+        deal_price, avatar, count, type, action_name, brand, sku_id
+    </sql>
+    <sql id="Find_Where" >
+        <where >
+            <if test="created != null and created !='' " >
+                 AND created = #{created,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updated != null and updated !='' " >
+                 AND updated = #{updated,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deleted != null and deleted !='' " >
+                 AND deleted = #{deleted,jdbcType=BIT}
+            </if>
+            <if test="orderId != null and orderId !='' " >
+                 AND order_id = #{orderId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name !='' " >
+                 AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="skuNo != null and skuNo !='' " >
+                 AND sku_no = #{skuNo,jdbcType=VARCHAR}
+            </if>
+            <if test="prodDate != null and prodDate !='' " >
+                 AND prod_date = #{prodDate,jdbcType=VARCHAR}
+            </if>
+            <if test="originalPrice != null and originalPrice !='' " >
+                 AND original_price = #{originalPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="dealPrice != null and dealPrice !='' " >
+                 AND deal_price = #{dealPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="avatar != null and avatar !='' " >
+                 AND avatar = #{avatar,jdbcType=VARCHAR}
+            </if>
+            <if test="count != null and count !='' " >
+                 AND count = #{count,jdbcType=INTEGER}
+            </if>
+            <if test="type != null and type !='' " >
+                 AND type = #{type,jdbcType=INTEGER}
+            </if>
+            <if test="actionName != null and actionName !='' " >
+                 AND action_name = #{actionName,jdbcType=VARCHAR}
+            </if>
+            <if test="brand != null and brand !='' " >
+                 AND brand = #{brand,jdbcType=VARCHAR}
+            </if>
+            <if test="skuId != null and skuId !='' " >
+                 AND sku_id = #{skuId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from shop_order_sku
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from shop_order_sku
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.m1c.yhy.shop.model.OrderSku" >
+        insert into shop_order_sku (id, created, updated, 
+            deleted, order_id, name, 
+            sku_no, prod_date, original_price, 
+            deal_price, avatar, count, 
+            type, action_name, brand, 
+            sku_id)
+        values (#{id,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+            #{deleted,jdbcType=BIT}, #{orderId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+            #{skuNo,jdbcType=VARCHAR}, #{prodDate,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, 
+            #{dealPrice,jdbcType=DECIMAL}, #{avatar,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+            #{type,jdbcType=INTEGER}, #{actionName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+            #{skuId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.m1c.yhy.shop.model.OrderSku" >
+        insert into shop_order_sku
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="created != null" >
+                created,
+            </if>
+            <if test="updated != null" >
+                updated,
+            </if>
+            <if test="deleted != null" >
+                deleted,
+            </if>
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="skuNo != null" >
+                sku_no,
+            </if>
+            <if test="prodDate != null" >
+                prod_date,
+            </if>
+            <if test="originalPrice != null" >
+                original_price,
+            </if>
+            <if test="dealPrice != null" >
+                deal_price,
+            </if>
+            <if test="avatar != null" >
+                avatar,
+            </if>
+            <if test="count != null" >
+                count,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="actionName != null" >
+                action_name,
+            </if>
+            <if test="brand != null" >
+                brand,
+            </if>
+            <if test="skuId != null" >
+                sku_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null" >
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="orderId != null" >
+                #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="skuNo != null" >
+                #{skuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="prodDate != null" >
+                #{prodDate,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null" >
+                #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="dealPrice != null" >
+                #{dealPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="avatar != null" >
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null" >
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="actionName != null" >
+                #{actionName,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null" >
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null" >
+                #{skuId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.m1c.yhy.shop.model.OrderSku" >
+        update shop_order_sku
+        <set >
+            <if test="created != null" >
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updated != null" >
+                updated = #{updated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="orderId != null" >
+                order_id = #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="skuNo != null" >
+                sku_no = #{skuNo,jdbcType=VARCHAR},
+            </if>
+            <if test="prodDate != null" >
+                prod_date = #{prodDate,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null" >
+                original_price = #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="dealPrice != null" >
+                deal_price = #{dealPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="avatar != null" >
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null" >
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="actionName != null" >
+                action_name = #{actionName,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null" >
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null" >
+                sku_id = #{skuId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.m1c.yhy.shop.model.OrderSku" >
+        update shop_order_sku
+        set created = #{created,jdbcType=TIMESTAMP},
+            updated = #{updated,jdbcType=TIMESTAMP},
+            deleted = #{deleted,jdbcType=BIT},
+            order_id = #{orderId,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            sku_no = #{skuNo,jdbcType=VARCHAR},
+            prod_date = #{prodDate,jdbcType=VARCHAR},
+            original_price = #{originalPrice,jdbcType=DECIMAL},
+            deal_price = #{dealPrice,jdbcType=DECIMAL},
+            avatar = #{avatar,jdbcType=VARCHAR},
+            count = #{count,jdbcType=INTEGER},
+            type = #{type,jdbcType=INTEGER},
+            action_name = #{actionName,jdbcType=VARCHAR},
+            brand = #{brand,jdbcType=VARCHAR},
+            sku_id = #{skuId,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="queryByModel" resultMap="BaseResultMap" parameterType="cn.m1c.yhy.shop.model.OrderSku" >
+        select 
+        <include refid="Base_Column_List" />
+        from shop_order_sku
+        <include refid="Find_Where" />
+    </select>
+</mapper>
